@@ -3,7 +3,7 @@ import {createStyles, Theme, withStyles, WithStyles} from '@material-ui/core/sty
 import Typography from '@material-ui/core/Typography';
 import Delete from '@material-ui/icons/Delete';
 import React from 'react';
-import TimeAgo from 'react-timeago';
+import Moment from 'react-moment';
 import Container from '../common/Container';
 import * as config from '../config';
 import {Markdown} from '../common/Markdown';
@@ -39,6 +39,8 @@ const styles = (theme: Theme) =>
             },
         },
         date: {
+            fontFamily: 'monospace',
+            fontSize: '93%',
             [theme.breakpoints.down('sm')]: {
                 order: 1,
                 flexBasis: '100%',
@@ -135,7 +137,7 @@ class Message extends React.PureComponent<IProps & WithStyles<typeof styles>> {
                                 {title}
                             </Typography>
                             <Typography variant="body1" className={classes.date}>
-                                <TimeAgo date={date} />
+                                <Moment format="YYYY-MM-DD HH:mm:ss Z" local>{date}</Moment>
                             </Typography>
                             <IconButton onClick={fDelete} className={`${classes.trash} delete`}>
                                 <Delete />

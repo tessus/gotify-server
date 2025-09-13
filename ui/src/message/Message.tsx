@@ -5,13 +5,12 @@ import Typography from '@mui/material/Typography';
 import {ExpandLess, ExpandMore} from '@mui/icons-material';
 import Delete from '@mui/icons-material/Delete';
 import React from 'react';
-import TimeAgo from 'react-timeago';
+import Moment from 'react-moment';
 import Container from '../common/Container';
 import {Markdown} from '../common/Markdown';
 import * as config from '../config';
 import {IMessageExtras} from '../types';
 import {contentType, RenderMode} from './extras';
-import {makeIntlFormatter} from 'react-timeago/defaultFormatter';
 
 const PREVIEW_LENGTH = 500;
 
@@ -50,6 +49,8 @@ const useStyles = makeStyles()((theme: Theme) => ({
         },
     },
     date: {
+        fontFamily: 'monospace',
+        fontSize: '93%',
         [theme.breakpoints.down('md')]: {
             order: 1,
             flexBasis: '100%',
@@ -236,7 +237,7 @@ const HeaderWide = ({
                 </Typography>
             </div>
             <Typography variant="body1" className={classes.date}>
-                <TimeAgo date={date} formatter={makeIntlFormatter({style: 'narrow'})} />
+                <Moment format="YYYY-MM-DD HH:mm:ss Z" local>{date}</Moment>
             </Typography>
             <IconButton
                 onClick={fDelete}
@@ -267,7 +268,7 @@ const HeaderSmall = ({
                     {appName}
                 </Typography>
                 <Typography variant="body1" className={classes.date}>
-                    <TimeAgo date={date} formatter={makeIntlFormatter({style: 'long'})} />
+                    <Moment format="YYYY-MM-DD HH:mm:ss Z" local>{date}</Moment>
                 </Typography>
             </div>
             <div style={{display: 'flex', alignItems: 'end', flexDirection: 'column'}}>
